@@ -31,23 +31,27 @@ bun run verify    # the full quality gate — must be green before anything land
 
 ## Deploy
 
-### Primary: Cloudflare Pages
+### Primary: GitHub Pages
 
-Git-connected to `main` (see [docs/adr/0003](docs/adr/0003-hosting-cloudflare-pages.md)):
+Every push to `main` deploys via `.github/workflows/pages.yml` (see [docs/adr/0003](docs/adr/0003-hosting-cloudflare-pages.md)). One-time setup:
 
-1. Cloudflare dashboard → Workers & Pages → Create → Pages → connect `ainaive/ainaive.github.io`, production branch `main`.
-2. Build command `bun run build`, output directory `dist`, no framework preset needed (Bun and Node are preinstalled; Node is pinned by `.node-version`).
-3. Custom domains: add `ainaive.com` (apex) and `www.ainaive.com`, then a bulk redirect from `www` → apex (301). TLS is automatic.
+1. Repo Settings → Pages → Source: **GitHub Actions** (or `gh api -X POST repos/ainaive/ainaive.github.io/pages -f build_type=workflow`).
+2. Custom domain: set `ainaive.com` in the Pages settings (or `gh api -X PUT repos/ainaive/ainaive.github.io/pages -f cname=ainaive.com`).
+3. DNS, at the zone for `ainaive.com` (if the zone is on Cloudflare, create these **DNS-only / grey-cloud** so GitHub can verify and issue TLS):
+   - apex `A` → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - apex `AAAA` → `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`
+   - `www` `CNAME` → `ainaive.github.io` (GitHub redirects `www` ↔ apex automatically)
+4. Once the certificate is issued: enable **Enforce HTTPS** (or `gh api -X PUT repos/ainaive/ainaive.github.io/pages -F https_enforced=true`).
 
-`public/_headers` carries the cache and security headers (strict CSP with no `script-src` — the zero-JS rule enforced at the edge). Every branch gets a preview deploy for free.
+Note: GitHub Pages serves `public/_headers` as an inert file — the CSP/cache headers there only take effect on Cloudflare.
 
-### Fallback: GitHub Pages (dormant)
+### Upgrade path: Cloudflare Pages
 
-`.github/workflows/pages.yml` is `workflow_dispatch`-only so it never races Cloudflare. Failover recipe:
+Worth the move if mainland-China reachability, per-branch preview deploys, or real `_headers` support start to matter:
 
-1. Repo Settings → Pages → Source: GitHub Actions; run the "Deploy to GitHub Pages (fallback)" workflow.
-2. Point DNS at GitHub Pages (apex A/AAAA records or `www` CNAME to `ainaive.github.io`).
-3. For a long-lived failover, set the custom domain in the Pages settings so TLS is issued.
+1. Cloudflare dashboard → Workers & Pages → connect `ainaive/ainaive.github.io`, production branch `main`, build `bun run build`, output `dist`.
+2. Custom domains: `ainaive.com` + `www.ainaive.com` with a bulk redirect `www` → apex (301).
+3. Flip DNS to Cloudflare Pages and demote `pages.yml` back to `workflow_dispatch`-only so the two hosts never race.
 
 ## Regenerating brand assets
 

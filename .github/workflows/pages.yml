@@ -1,9 +1,10 @@
-# Dormant fallback: deploys to GitHub Pages only when triggered by hand.
-# Cloudflare Pages is the primary host (docs/adr/0003); the failover recipe
-# lives in README.md.
-name: Deploy to GitHub Pages (fallback)
+# Primary deployment: GitHub Pages, on every push to main (docs/adr/0003).
+# Cloudflare Pages remains the documented upgrade path in README.md.
+name: Deploy to GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
