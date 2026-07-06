@@ -5,7 +5,12 @@ const channel = (value: number): number => {
   return srgb <= 0.04045 ? srgb / 12.92 : Math.pow((srgb + 0.055) / 1.055, 2.4);
 };
 
+export const HEX_COLOR = /^#[0-9A-Fa-f]{6}$/;
+
 export const relativeLuminance = (hex: string): number => {
+  if (!HEX_COLOR.test(hex)) {
+    throw new Error(`expected #rrggbb color, got "${hex}"`);
+  }
   const n = Number.parseInt(hex.slice(1), 16);
   return (
     0.2126 * channel((n >> 16) & 0xff) +

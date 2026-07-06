@@ -1,6 +1,6 @@
 import { z } from "astro/zod";
 
-import { AA_TEXT, contrastRatio } from "./contrast";
+import { AA_TEXT, contrastRatio, HEX_COLOR } from "./contrast";
 import { palette } from "./palette";
 
 /** Every localized field carries both languages — there is no fallback. */
@@ -9,12 +9,16 @@ const l10n = z.object({
   zh: z.string().min(1),
 });
 
-const hexColor = z.string().regex(/^#[0-9A-Fa-f]{6}$/, "expected #rrggbb");
+const hexColor = z.string().regex(HEX_COLOR, "expected #rrggbb");
 
 const accentOn = (paper: string, mode: "light" | "dark") =>
-  hexColor.refine((color) => contrastRatio(color, paper) >= AA_TEXT, {
-    message: `accent.${mode} must be at least ${AA_TEXT}:1 against ${mode} paper ${paper} — darken or brighten it (see docs/CONTENT.md)`,
-  });
+  hexColor.refine(
+    // Malformed hex passes here so only the regex check reports it.
+    (color) => !HEX_COLOR.test(color) || contrastRatio(color, paper) >= AA_TEXT,
+    {
+      message: `accent.${mode} must be at least ${AA_TEXT}:1 against ${mode} paper ${paper} — darken or brighten it (see docs/CONTENT.md)`,
+    },
+  );
 
 export const appSchema = z.object({
   name: z.string().min(1),

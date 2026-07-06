@@ -13,6 +13,11 @@ describe("relativeLuminance", () => {
     expect(relativeLuminance("#FFFFFF")).toBeCloseTo(1, 5);
   });
 
+  test("rejects malformed hex instead of returning silent NaN", () => {
+    expect(() => relativeLuminance("#abc")).toThrow("expected #rrggbb");
+    expect(() => relativeLuminance("f7f3eb")).toThrow("expected #rrggbb");
+  });
+
   test("matches the WCAG worked example for mid grey", () => {
     // #767676 is the canonical 4.54:1-on-white grey.
     expect(contrastRatio("#767676", "#FFFFFF")).toBeGreaterThan(4.5);
