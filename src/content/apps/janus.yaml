@@ -1,0 +1,22 @@
+name: Janus
+order: 5
+status: v0
+tagline:
+  en: "Minimal beats complete."
+  zh: "够用，胜过全能。"
+description:
+  en: >-
+    A self-hosted CI/CD service in one dependency-free Go binary: pipelines
+    run as plain host processes — no containers, no ceremony; a webhook, a
+    scheduler, a dashboard.
+  zh: >-
+    装在单个无依赖 Go 二进制里的自托管 CI/CD：流水线以宿主机进程直接运行 ——
+    不要容器，也没有繁文缛节；一个 webhook，一个调度器，一个看板。
+meta:
+  en: [Single Go binary, Open source · MIT, No containers]
+  zh: [单个 Go 二进制, 开源 · MIT, 无需容器]
+accent:
+  light: "#1565C0"
+  dark: "#64B5F6"
+links:
+  github: https://github.com/hutusi/janus

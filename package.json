@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "verify": "bun run format:check && bun run lint && bun run check && bun run build"
+    "test:unit": "bun test tests/unit",
+    "verify": "bun run format:check && bun run lint && bun run check && bun run test:unit && bun run build"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
+    "@types/bun": "^1.3.14",
     "eslint": "^10.6.0",
     "eslint-plugin-astro": "^2.1.1",
     "html-validate": "^11.5.5",

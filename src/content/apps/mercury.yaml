@@ -1,0 +1,23 @@
+name: Mercury
+order: 1
+status: live
+tagline:
+  en: "Start with the exam. End with the career."
+  zh: "考试为始，职场为终。"
+description:
+  en: >-
+    An English-learning app for Chinese-speaking professionals: TOEIC and
+    IELTS prep on the way in, practical business English for the long haul —
+    with AI-graded writing and speaking, and timed mock exams.
+  zh: >-
+    为中文母语职场人做的英语学习应用：以托业、雅思备考入门，以实用商务英语立身
+    —— AI 批改写作与口语，还有全真计时模考。
+meta:
+  en: [Web app, Six study modes, AI-graded writing & speaking]
+  zh: [网页应用, 六种学习模式, AI 批改写作与口语]
+accent:
+  light: "#A93E26"
+  dark: "#E08063"
+links:
+  live: https://mercury.ainaive.com
+  github: https://github.com/hutusi/mercury

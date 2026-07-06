@@ -1,0 +1,23 @@
+name: Monecraft
+order: 4
+status: live
+tagline:
+  en: "A whole voxel world, drawn entirely in code."
+  zh: "一整个方块世界，全部由代码画成。"
+description:
+  en: >-
+    A Minecraft-inspired survival game that runs in the browser — five
+    biomes, seven gear tiers, online co-op — and every texture and sound is
+    procedural: zero binary assets.
+  zh: >-
+    跑在浏览器里的 Minecraft 风生存游戏 —— 五种群系、七级装备、联机合作，
+    而所有贴图与音效都是程序即时生成：零素材文件。
+meta:
+  en: [Browser game · Three.js, 100% procedural, 2–8 player co-op]
+  zh: [浏览器游戏 · Three.js, 100% 程序生成, 2–8 人联机]
+accent:
+  light: "#7A5E16"
+  dark: "#F0BE3C"
+links:
+  live: https://monecraft.vercel.app
+  github: https://github.com/hutusi/monecraft

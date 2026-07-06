@@ -1,0 +1,22 @@
+name: Ovid
+order: 3
+status: soon
+tagline:
+  en: "A quiet desktop home for Markdown."
+  zh: "给 Markdown 一间安静的书房。"
+description:
+  en: >-
+    A local-first desktop Markdown editor: Typora-style inline editing with
+    Git built in, made to pair with Amytis — write locally, publish as a
+    garden.
+  zh: >-
+    本地优先的桌面 Markdown 编辑器：Typora 式行内编辑，内置 Git 工作流，
+    与 Amytis 天然成对 —— 在本地写作，发布成一座花园。
+meta:
+  en: [Desktop app · Tauri, Inline WYSIWYG, Git built in]
+  zh: [桌面应用 · Tauri, 行内所见即所得, 内置 Git]
+accent:
+  light: "#9A5827"
+  dark: "#D9975B"
+links:
+  github: https://github.com/hutusi/ovid
