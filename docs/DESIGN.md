@@ -42,7 +42,7 @@ Rules: an accent colors _small things_ — index numerals, status chips, link un
 
 ## Typography
 
-- **Latin:** Newsreader (SIL OFL), self-hosted variable woff2, **latin subset only**, weights 400–700, optical sizing on. Budget ≤ 120 KB. `font-display: swap` with a metrics-adjusted Georgia fallback to avoid layout shift.
+- **Latin:** Newsreader (SIL OFL), self-hosted variable woff2, **latin subset only**, weights 400–700 with the full optical-size axis (opsz 6–72 — it's what makes the display cuts elegant, and worth its bytes). Measured 129 KB; budget ≤ 140 KB. `font-display: swap` with a metrics-adjusted Georgia fallback to avoid layout shift.
 - **Chinese: system serif fonts only.** No CJK webfont, ever (they are megabytes). Stack falls through: `"Newsreader", Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif`. Latin glyphs (app names, the wordmark) render in Newsreader on both locales.
 - **Mono** (version numbers, status chips, meta facts): system mono — `ui-monospace, "SF Mono", Menlo, Consolas, monospace`.
 - **Fluid scale** (`clamp()`), rem-based: `--step--1` ≈ 0.83–0.94, `--step-0` ≈ 1–1.125 (body), `--step-1`, `--step-2`, `--step-3`, and `--step-4` ≈ 2.5–4.75 (hero wordmark only).
