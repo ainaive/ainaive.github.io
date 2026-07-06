@@ -1,0 +1,31 @@
+---
+/**
+ * The brand device: "AI NATIVE" with the T struck through in seal red —
+ * what remains is naive. Assistive tech hears "AI Naive", never "AI Native".
+ */
+interface Props {
+  ariaName: string;
+}
+
+const { ariaName } = Astro.props;
+---
+
+<span class="wordmark" lang="en">
+  <span class="visually-hidden">{ariaName}</span>
+  <span aria-hidden="true">AI&nbsp;NA<span class="lost-t">T</span>IVE</span>
+</span>
+
+<style>
+  .wordmark {
+    font-weight: 500;
+    letter-spacing: 0.015em;
+    font-variant-numeric: lining-nums;
+  }
+
+  .lost-t {
+    color: color-mix(in oklab, var(--ink) 34%, transparent);
+    text-decoration: line-through;
+    text-decoration-color: var(--seal);
+    text-decoration-thickness: 0.075em;
+  }
+</style>

@@ -1,0 +1,127 @@
+<!doctype html>
+<!--
+  Design-time tool, never shipped: the source for public/og/og-{en,zh}.png.
+  Open with ?locale=en or ?locale=zh at exactly 1200×630 and screenshot
+  (recipe in README.md). Fonts load relative to ../public/.
+  The taglines below are copies of hero.tagline in src/i18n/ui.ts — that file
+  is the source of truth; keep them in sync when the copy changes.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>OG image template</title>
+    <style>
+      @font-face {
+        font-family: "Newsreader";
+        src: url("../public/fonts/newsreader-latin.woff2") format("woff2");
+        font-weight: 400 700;
+        font-display: block;
+      }
+
+      html,
+      body {
+        margin: 0;
+      }
+
+      .card {
+        position: relative;
+        width: 1200px;
+        height: 630px;
+        box-sizing: border-box;
+        padding: 96px 104px;
+        background: #f7f3eb;
+        color: #2b2620;
+        font-family: "Newsreader", Georgia, "Songti SC", serif;
+        font-optical-sizing: auto;
+        overflow: hidden;
+      }
+
+      .wordmark {
+        font-size: 132px;
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: 0.01em;
+      }
+
+      .lost-t {
+        color: rgb(43 38 32 / 34%);
+        text-decoration: line-through;
+        text-decoration-color: #a93e26;
+        text-decoration-thickness: 10px;
+      }
+
+      .underline {
+        display: block;
+        width: 560px;
+        height: 14px;
+        margin-top: 18px;
+        color: #a93e26;
+      }
+
+      .tagline {
+        margin-top: 56px;
+        font-family: ui-monospace, "SF Mono", Menlo, monospace;
+        font-size: 34px;
+        letter-spacing: 0.08em;
+        color: #a93e26;
+      }
+
+      .domain {
+        position: absolute;
+        left: 104px;
+        bottom: 88px;
+        font-size: 30px;
+        color: #6b6257;
+      }
+
+      .seal {
+        position: absolute;
+        right: 104px;
+        bottom: 88px;
+        width: 120px;
+        height: 120px;
+        color: #a93e26;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="wordmark">AI&nbsp;NA<span class="lost-t">T</span>IVE</div>
+      <svg class="underline" viewBox="0 0 220 10" preserveAspectRatio="none">
+        <path
+          d="M3 6.8 C 38 3.6, 74 6.6, 108 5.2 C 142 3.9, 176 6.4, 217 4.6"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        ></path>
+      </svg>
+      <div class="tagline" id="tagline">small software, honestly made</div>
+      <div class="domain">ainaive.com</div>
+      <svg class="seal" viewBox="0 0 64 64">
+        <path
+          d="M7 9.5 C 21 6.5, 43 6, 57 8.5 C 59.5 22, 59 41, 57 55.5 C 43 58.5, 20 58, 8.5 56 C 5.5 42, 5.5 23, 7 9.5 Z"
+          fill="currentColor"
+        ></path>
+        <g
+          stroke="#f7f3eb"
+          stroke-width="5.5"
+          stroke-linecap="round"
+          fill="none"
+        >
+          <circle cx="23.5" cy="37" r="7.5"></circle>
+          <path d="M31 29.5 V 44.5"></path>
+          <path d="M44 29.5 V 44.5"></path>
+        </g>
+        <circle cx="44" cy="19.5" r="3.4" fill="#f7f3eb"></circle>
+      </svg>
+    </div>
+    <script>
+      const params = new URLSearchParams(location.search);
+      if (params.get("locale") === "zh") {
+        document.documentElement.lang = "zh-Hans";
+        document.getElementById("tagline").textContent = "小软件，认真做";
+      }
+    </script>
+  </body>
+</html>

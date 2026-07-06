@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ainaive.com/sitemap-index.xml

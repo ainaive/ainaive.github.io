@@ -1,0 +1,23 @@
+name: Amytis
+order: 2
+status: live
+tagline:
+  en: "A home for ideas to grow, link, and evolve."
+  zh: "让想法生长、连结、演化的家园。"
+description:
+  en: >-
+    An open-source digital-garden framework: plain Markdown grows from daily
+    fragments into articles, series, and books — with wiki-links, backlinks,
+    and a knowledge graph to wander through.
+  zh: >-
+    开源的数字花园框架：纯 Markdown 从每日碎片一路长成文章、专栏与成书 ——
+    有双向链接、反向引用，还有一张可供漫游的知识图谱。
+meta:
+  en: [Open source · MIT, Static-site framework, Knowledge graph & wiki-links]
+  zh: [开源 · MIT, 静态站点框架, 知识图谱与双向链接]
+accent:
+  light: "#047857"
+  dark: "#34D399"
+links:
+  live: https://amytis.vercel.app
+  github: https://github.com/hutusi/amytis
