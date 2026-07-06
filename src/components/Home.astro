@@ -1,0 +1,82 @@
+---
+import { type Locale, ui } from "../i18n/ui";
+import Base from "../layouts/Base.astro";
+import About from "./About.astro";
+import AppShelf from "./AppShelf.astro";
+import Footer from "./Footer.astro";
+import HandUnderline from "./HandUnderline.astro";
+import LangToggle from "./LangToggle.astro";
+import Seal from "./Seal.astro";
+import Wordmark from "./Wordmark.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = ui[locale];
+---
+
+<Base locale={locale}>
+  <header class="shell site-header">
+    <Seal size={28} />
+    <LangToggle locale={locale} />
+  </header>
+
+  <main id="main" class="shell">
+    <section class="hero">
+      <h1><Wordmark ariaName={t.hero.wordmarkAria} /></h1>
+      <HandUnderline />
+      <p class="tagline">{t.hero.tagline}</p>
+      <p class="manifesto">{t.hero.manifesto}</p>
+    </section>
+
+    <AppShelf locale={locale} />
+    <About locale={locale} />
+  </main>
+
+  <Footer locale={locale} />
+</Base>
+
+<style>
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--space-m);
+  }
+
+  .hero {
+    padding-block: var(--space-xl) 0;
+  }
+
+  h1 {
+    font-size: var(--step-4);
+    font-weight: 500;
+    line-height: 1.02;
+    letter-spacing: 0.01em;
+  }
+
+  .hero :global(.hand-underline) {
+    margin-block-start: 0.4rem;
+  }
+
+  .tagline {
+    margin-block-start: var(--space-m);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.08em;
+    color: var(--seal);
+  }
+
+  .manifesto {
+    margin-block-start: var(--space-s);
+    max-inline-size: 34em;
+    font-size: var(--step-1);
+    line-height: 1.6;
+  }
+
+  :root:lang(zh-Hans) .manifesto {
+    line-height: 1.85;
+  }
+</style>

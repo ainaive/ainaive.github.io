@@ -1,0 +1,80 @@
+---
+import "../styles/global.css";
+
+import { type Locale, localePath, site, ui } from "../i18n/ui";
+
+interface Props {
+  locale: Locale;
+  /** Page title override (e.g. the 404 page). */
+  title?: string;
+  /** Set on pages that shouldn't advertise canonical/alternate/OG (404). */
+  noSeo?: boolean;
+}
+
+const { locale, title, noSeo = false } = Astro.props;
+const t = ui[locale];
+const otherLocale: Locale = locale === "en" ? "zh" : "en";
+
+const pageTitle = title ?? t.meta.title;
+const canonical = `${site.url}${localePath(locale)}/`;
+const ogImage = `${site.url}/og/og-${locale}.png`;
+---
+
+<!doctype html>
+<html lang={locale === "en" ? "en" : "zh-Hans"}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={t.meta.description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#f7f3eb"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#201d18"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+      rel="preload"
+      href="/fonts/newsreader-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    {
+      !noSeo && (
+        <>
+          <link rel="canonical" href={canonical} />
+          <link rel="alternate" hreflang="en" href={`${site.url}/`} />
+          <link rel="alternate" hreflang="zh-Hans" href={`${site.url}/zh/`} />
+          <link rel="alternate" hreflang="x-default" href={`${site.url}/`} />
+          <meta property="og:site_name" content={site.name} />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={pageTitle} />
+          <meta property="og:description" content={t.meta.description} />
+          <meta property="og:url" content={canonical} />
+          <meta property="og:image" content={ogImage} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta property="og:locale" content={t.meta.ogLocale} />
+          <meta
+            property="og:locale:alternate"
+            content={ui[otherLocale].meta.ogLocale}
+          />
+          <meta name="twitter:card" content="summary_large_image" />
+        </>
+      )
+    }
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.skipLink}</a>
+    <slot />
+  </body>
+</html>
