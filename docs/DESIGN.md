@@ -24,11 +24,11 @@ Single source of truth: `src/lib/palette.ts`. The CSS in `global.css` uses the s
 | `--ink-muted`  | `#6B6257` (5.4:1)              | `#A89F90` (6.4:1)            | secondary text, meta facts                     |
 | `--seal`       | `#A93E26` (5.6:1)              | `#E08063` (6.0:1)            | the cinnabar; strike, seal, focus rings        |
 | `--rule`       | `--ink` at 18% alpha           | same                         | hairlines                                      |
-| `--accent`     | per app, see below             | per app                      | one accent per app row                         |
+| `--accent`     | per app, see below             | per app                      | one accent per app tile                        |
 
 ### Per-app accents
 
-Each app row carries the app's **own** accent, taken from its real product identity — the shelf reads as a row of distinct handmade objects. Contrast is enforced at build time by the content schema.
+Each app tile carries the app's **own** accent, taken from its real product identity — the shelf reads as a sheet of distinct handmade objects. Contrast is enforced at build time by the content schema.
 
 | App       | Light     | Dark      | Provenance                                                                      |
 | --------- | --------- | --------- | ------------------------------------------------------------------------------- |
@@ -38,7 +38,7 @@ Each app row carries the app's **own** accent, taken from its real product ident
 | Monecraft | `#7A5E16` | `#F0BE3C` | its gold (darkened for AA on light paper; bright gold lives in dark mode)       |
 | Janus     | `#1565C0` | `#64B5F6` | its dashboard "running" blue                                                    |
 
-Rules: an accent colors _small things_ — index numerals, status chips, link underlines/hovers, the row's hover rule. Never large fills, never body text.
+Rules: an accent colors _small things_ — index numerals, status chips, link underlines/hovers, the tile's hover rule. Never large fills, never body text.
 
 ## Typography
 
@@ -51,13 +51,13 @@ Rules: an accent colors _small things_ — index numerals, status chips, link un
 ## Layout
 
 - Single column, `max-inline-size: 72rem` shell, prose capped at `65ch` (Latin) / ~`38em` effect for zh.
-- **The app shelf is a ledger, not a card grid**: full-width rows in an `<ol>`, separated by hairline rules. Row anatomy (desktop): oversized accent index numeral `01` (6rem column) · name + status chip + tagline + description + meta facts (1fr) · links (auto). Below 640px everything stacks.
+- **The app shelf is a stamp sheet** (this deliberately supersedes the v1 "ledger, not a card grid" decision — the ledger read as a wall of text and didn't scale past a handful of apps): tiles in an `<ol>` grid sharing 1px `--rule` hairlines with **zero gaps**, like a sheet of stamps — a nod to the seal. 3 columns, 2 at ≤ 64rem, 1 at ≤ 40rem. Tile anatomy: accent index numeral `01` · name + status chip · tagline · a native `<details name>` disclosure holding description + meta facts (exclusive accordion — one open at a time) · links pinned at the tile's block-end, always visible. A quiet colophon tile ("More in the works.") closes the sheet.
 - `border-radius: 0` everywhere. No shadows. Depth comes from paper tones (`--paper-deep`) and hairlines.
 - Sections separated by hairline rules, generous block spacing (fluid `clamp()` gaps).
 
 ## Motion & interaction
 
-- Default state is still. Permitted motion: the row hover rule (2px accent line sliding in at the left edge) and link underline transitions — all inside `@media (prefers-reduced-motion: no-preference)`.
+- Default state is still. Permitted motion: the tile hover rule (2px accent line sliding across the top edge), link underline transitions, and the tile disclosure (`::details-content` + `interpolate-size: allow-keywords` height transition — pure CSS; browsers without support toggle instantly, which is fine) — all inside `@media (prefers-reduced-motion: no-preference)`.
 - Focus: `:focus-visible { outline: 2px solid var(--accent, var(--seal)); outline-offset: 3px; }`. Never remove outlines.
 - External links: trailing ↗ glyph, `rel="noopener"`, no `target="_blank"`.
 

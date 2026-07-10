@@ -43,3 +43,4 @@ All non-app strings (headings, manifesto, about, footer, status labels, meta des
 - Voice (both languages): honest, plain, a little wry. Say what the thing is and does; no hype vocabulary (revolutionary / seamless / 赋能 / 极致 / 重磅).
 - Chinese punctuation: full-width （，。「」）; keep Latin product names in Latin with `lang="en"` handled by components.
 - Descriptions: 1–2 sentences. Taglines: one line. Meta facts: 2–4 short noun phrases.
+- On the shelf, the tagline is always visible; description and meta facts sit behind the tile's "More" disclosure — so the tagline must stand on its own, and the description shouldn't repeat it.
