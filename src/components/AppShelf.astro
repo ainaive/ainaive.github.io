@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 
 import { type Locale, ui } from "../i18n/ui";
-import AppRow from "./AppRow.astro";
+import AppTile from "./AppTile.astro";
 
 interface Props {
   locale: Locale;
@@ -23,9 +23,10 @@ const apps = (await getCollection("apps"))
   <ol role="list">
     {
       apps.map((app, index) => (
-        <AppRow app={app} index={index} locale={locale} />
+        <AppTile app={app} index={index} locale={locale} />
       ))
     }
+    <li class="colophon"><p>{t.shelf.colophon}</p></li>
   </ol>
 </section>
 
@@ -48,9 +49,41 @@ const apps = (await getCollection("apps"))
     color: var(--ink-muted);
   }
 
+  /* the stamp sheet: cells share hairlines, no gaps. The container draws
+     the start edges, every cell its end edges — so the sheet stays correct
+     at any cell count, including a ragged last row. */
   ol {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     list-style: none;
     padding: 0;
+    border-block-start: 1px solid var(--rule);
+    border-inline-start: 1px solid var(--rule);
+  }
+
+  ol > :global(li) {
+    border-inline-end: 1px solid var(--rule);
     border-block-end: 1px solid var(--rule);
+  }
+
+  .colophon {
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-m);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  @media (max-width: 64rem) {
+    ol {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 40rem) {
+    ol {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

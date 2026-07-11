@@ -87,6 +87,20 @@ describe("the shelf", () => {
     expect(enHtml).toContain(name);
     expect(zhHtml).toContain(name);
   });
+
+  test("tiles disclose details natively, none pre-opened", () => {
+    for (const html of [enHtml, zhHtml]) {
+      expect(html).toContain("<details");
+      expect(html).toContain("<summary");
+      // with name= grouping, a pre-opened tile would break the accordion
+      expect(html).not.toMatch(/<details[^>]*\bopen\b/);
+    }
+  });
+
+  test("colophon note closes the sheet on both locales", () => {
+    expect(enHtml).toContain("More in the works.");
+    expect(zhHtml).toContain("更多在路上。");
+  });
 });
 
 describe("links", () => {

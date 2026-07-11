@@ -1,0 +1,229 @@
+---
+import { type Locale, ui } from "../i18n/ui";
+import type { App } from "../lib/schema";
+
+interface Props {
+  app: App;
+  index: number;
+  locale: Locale;
+}
+
+const { app, index, locale } = Astro.props;
+const t = ui[locale];
+const numeral = String(index + 1).padStart(2, "0");
+const accent = `--accent: light-dark(${app.accent.light}, ${app.accent.dark})`;
+
+const links = [
+  app.links.live && { href: app.links.live, label: t.appLinks.live },
+  app.links.github && { href: app.links.github, label: t.appLinks.github },
+].filter((l): l is { href: string; label: string } => Boolean(l));
+---
+
+<li class="app-tile" style={accent}>
+  <span class="index" aria-hidden="true">{numeral}</span>
+  <h3 class="name">
+    <span lang="en">{app.name}</span>
+    <span class="status">{t.status[app.status]}</span>
+  </h3>
+  <p class="tagline">{app.tagline[locale]}</p>
+  {
+    /* summary keeps a stable accessible name; the visible More/Less pair is
+      decorative and swapped in CSS — the open/closed state itself is native */
+  }
+  <details name="shelf-app">
+    <summary>
+      <span class="visually-hidden">{app.name} {t.appTile.detailsAria}</span>
+      <span class="label label-more" aria-hidden="true">
+        ▸ {t.appTile.more}
+      </span>
+      <span class="label label-less" aria-hidden="true">
+        ▾ {t.appTile.less}
+      </span>
+    </summary>
+    <div class="disclosure">
+      <p class="desc">{app.description[locale]}</p>
+      <ul class="meta">
+        {app.meta[locale].map((fact) => <li>{fact}</li>)}
+      </ul>
+    </div>
+  </details>
+  {
+    links.length > 0 && (
+      <nav class="links" aria-label={app.name}>
+        {links.map((link) => (
+          <a href={link.href} rel="noopener">
+            {link.label}
+            <span aria-hidden="true"> ↗</span>
+          </a>
+        ))}
+      </nav>
+    )
+  }
+</li>
+
+<style>
+  /* hairline borders come from the shelf's shared stamp-sheet rule */
+  .app-tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-m);
+  }
+
+  .app-tile::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    block-size: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+  }
+
+  .app-tile:hover::before {
+    transform: scaleX(1);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .app-tile::before {
+      transition: transform 240ms ease;
+    }
+  }
+
+  .index {
+    font-size: var(--step-2);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .name {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75em;
+    flex-wrap: wrap;
+    margin-block-start: 0.6em;
+    font-size: var(--step-1);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .status {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    font-weight: 400;
+    color: var(--accent);
+    border: 1px solid color-mix(in oklab, var(--accent) 55%, var(--paper));
+    padding: 0.05em 0.55em;
+    white-space: nowrap;
+  }
+
+  .tagline {
+    margin-block-start: 0.5em;
+    font-weight: 500;
+  }
+
+  details {
+    margin-block-start: 0.9em;
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+    inline-size: fit-content;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary:hover {
+    color: var(--accent);
+  }
+
+  details[open] .label-more,
+  details:not([open]) .label-less {
+    display: none;
+  }
+
+  /* padding, not child margins — margins would collapse out of
+     ::details-content and make the height transition jump */
+  .disclosure {
+    padding-block-start: 0.75em;
+  }
+
+  .desc {
+    color: var(--ink-muted);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em 0;
+    list-style: none;
+    margin-block-start: 0.9em;
+    padding: 0;
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--ink-muted);
+  }
+
+  .meta li:not(:last-child)::after {
+    content: "·";
+    margin-inline: 0.7em;
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    details {
+      interpolate-size: allow-keywords;
+    }
+
+    details::details-content {
+      block-size: 0;
+      overflow-y: clip;
+      transition:
+        block-size 240ms ease,
+        content-visibility 240ms allow-discrete;
+    }
+
+    details[open]::details-content {
+      block-size: auto;
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 1.5em;
+    align-items: baseline;
+    margin-block-start: auto;
+    padding-block-start: var(--space-s);
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+  }
+
+  .links a {
+    text-decoration-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  }
+
+  .links a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  @media print {
+    details::details-content {
+      content-visibility: visible;
+      block-size: auto;
+    }
+
+    summary {
+      display: none;
+    }
+  }
+</style>

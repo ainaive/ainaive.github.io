@@ -28,6 +28,7 @@ const en = {
   shelf: {
     heading: "The shelf",
     lede: "Everything here is real: built with AI, finished by hand, and in use.",
+    colophon: "More in the works.",
   },
   status: {
     live: "Live",
@@ -37,6 +38,11 @@ const en = {
   appLinks: {
     live: "Visit",
     github: "Source",
+  },
+  appTile: {
+    more: "More",
+    less: "Less",
+    detailsAria: "details",
   },
   about: {
     heading: "About",
@@ -82,6 +88,7 @@ const zh = {
   shelf: {
     heading: "架上",
     lede: "这里的每一件都是真的：与 AI 一起构建，亲手打磨，正在被使用。",
+    colophon: "更多在路上。",
   },
   status: {
     live: "已上线",
@@ -91,6 +98,11 @@ const zh = {
   appLinks: {
     live: "访问",
     github: "源码",
+  },
+  appTile: {
+    more: "展开",
+    less: "收起",
+    detailsAria: "详情",
   },
   about: {
     heading: "关于",
@@ -121,9 +133,10 @@ type UiShape = {
   skipLink: string;
   langToggle: { label: string; ariaCurrent: string };
   hero: { tagline: string; wordmarkAria: string; manifesto: string };
-  shelf: { heading: string; lede: string };
+  shelf: { heading: string; lede: string; colophon: string };
   status: { live: string; soon: string; v0: string };
   appLinks: { live: string; github: string };
+  appTile: { more: string; less: string; detailsAria: string };
   about: { heading: string; body: readonly string[] };
   footer: {
     line: string;
