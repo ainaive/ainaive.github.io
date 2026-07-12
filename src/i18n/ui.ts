@@ -11,7 +11,7 @@ const en = {
   meta: {
     title: "AI Naive — small software, honestly made",
     description:
-      "The storefront of AI Naive: an ordinary developer working with AI tools, quietly shipping one real thing after another.",
+      "The storefront of AI Naive: an ordinary developer, coding with AI, quietly making small things that are more fun than useful.",
     ogLocale: "en_US",
   },
   skipLink: "Skip to content",
@@ -23,11 +23,11 @@ const en = {
     tagline: "small software, honestly made",
     wordmarkAria: "AI Naive",
     manifesto:
-      "AI Naive is “AI Native” with the T — the Technology — fallen out. It isn’t a typo; it’s a stance. No grand narrative, no pitch deck. Just an ordinary developer, working with AI tools, quietly shipping one real thing after another.",
+      "AI Naive is “AI Native” with the T — the Technology — fallen out. It isn’t a typo; it’s a stance. None of Big Tech’s Technology, no grand narrative, no pitch deck. Just an ordinary developer, coding with AI, quietly making small things that are useless but fun.",
   },
   shelf: {
     heading: "The shelf",
-    lede: "Everything here is real: built with AI, finished by hand, and in use.",
+    lede: "Not all of it is useful, but all of it is fun: built with AI, polished by hand, waiting for someone with your taste to find it.",
     colophon: "More in the works.",
   },
   status: {
@@ -47,12 +47,12 @@ const en = {
   about: {
     heading: "About",
     body: [
-      "AI Naive is the workshop label of hutusi — an engineer who would rather ship a small true thing than talk about a big imaginary one.",
+      "AI Naive is the workshop label of [hutusi](https://hutusi.com) — making things that are useless but fun.",
       "Every app on the shelf was built in close collaboration with AI coding tools, then tested, documented, and maintained like it matters — because it does. More is on the way.",
     ],
   },
   footer: {
-    line: "Handmade, with a machine.",
+    line: "Useless, and therefore useful.",
     sealAria: "AI Naive seal",
     links: {
       github: "GitHub",
