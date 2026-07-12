@@ -87,7 +87,7 @@ const zh = {
   },
   shelf: {
     heading: "架上",
-    lede: "这里的软件不一定有用，但一定有趣：借助 AI 构建，迭代打磨，等待与你有同样品味的人的发现。",
+    lede: "这里的软件可能有用，也可能无用，但一定要有趣，等待品味相投的你来发现。",
     colophon: "更多在路上。",
   },
   status: {
@@ -107,8 +107,7 @@ const zh = {
   about: {
     heading: "关于",
     body: [
-      "AI Naive 是 [hutusi](https://hutusi.com) 的工坊标签 —— 做无用而有趣的东西。",
-      "架上的每一个应用，都是与 AI 编程工具深度协作的产物，然后像正经软件一样测试、写文档、长期维护 —— 因为它们本来就是正经软件。更多作品，正在路上。",
+      "AI Naive 是 [hutusi](https://hutusi.com) 的工坊印记 —— 用 AI 做有趣的东西。",
     ],
   },
   footer: {
