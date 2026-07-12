@@ -71,7 +71,7 @@ const zh = {
   meta: {
     title: "AI Naive —— 小软件，认真做",
     description:
-      "AI Naive 的作品陈列室：一个普通开发者，带着 AI 工具，安安静静地做出一件又一件真实有用的东西。",
+      "AI Naive 的作品陈列室：一个普通开发者，借助 AI 编程，安安静静地做出一些无用而有趣的东西。",
     ogLocale: "zh_CN",
   },
   skipLink: "跳到正文",
@@ -83,11 +83,11 @@ const zh = {
     tagline: "小软件，认真做",
     wordmarkAria: "AI Naive",
     manifesto:
-      "AI Naive，是 AI Native 掉了那个 T —— 代表 Technology 的 T。这不是拼写错误，而是一种态度：不讲宏大叙事，不做融资幻灯片，只是一个普通开发者，带着 AI 工具，安安静静地做出一件又一件真实有用的东西。",
+      "AI Naive，不是 AI Native，少了 T —— 代表 Technology 的 T。没有大公司的那种 Technology，也不会讲宏大叙事，不会做路演幻灯片，只是一个普通开发者，借助 AI 编程，安安静静地做出一些无用而有趣的东西。",
   },
   shelf: {
     heading: "架上",
-    lede: "这里的每一件都是真的：与 AI 一起构建，亲手打磨，正在被使用。",
+    lede: "这里的软件不一定有用，但一定有趣：借助 AI 构建，迭代打磨，等待与你有同样品味的人的发现。",
     colophon: "更多在路上。",
   },
   status: {
@@ -107,12 +107,12 @@ const zh = {
   about: {
     heading: "关于",
     body: [
-      "AI Naive 是 hutusi 的工坊标签 —— 比起谈论宏大的想象，更愿意交付微小的真实。",
+      "AI Naive 是 [hutusi](https://hutusi.com) 的工坊标签 —— 做无用而有趣的东西。",
       "架上的每一个应用，都是与 AI 编程工具深度协作的产物，然后像正经软件一样测试、写文档、长期维护 —— 因为它们本来就是正经软件。更多作品，正在路上。",
     ],
   },
   footer: {
-    line: "手作，借了机器的手。",
+    line: "无用之用，方为大用。",
     sealAria: "AI Naive 印章",
     links: {
       github: "GitHub",
