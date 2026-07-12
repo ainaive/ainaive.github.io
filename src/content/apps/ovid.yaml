@@ -1,6 +1,5 @@
 name: Ovid
-order: 3
-status: soon
+order: 2
 tagline:
   en: "A quiet desktop home for Markdown."
   zh: "给 Markdown 一间安静的书房。"

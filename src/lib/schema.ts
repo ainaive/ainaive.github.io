@@ -23,7 +23,6 @@ const accentOn = (paper: string, mode: "light" | "dark") =>
 export const appSchema = z.object({
   name: z.string().min(1),
   order: z.number().int().positive(),
-  status: z.enum(["live", "soon", "v0"]),
   tagline: l10n,
   description: l10n,
   meta: z

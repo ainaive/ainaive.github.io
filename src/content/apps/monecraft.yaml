@@ -1,6 +1,5 @@
 name: Monecraft
 order: 4
-status: live
 tagline:
   en: "A whole voxel world, drawn entirely in code."
   zh: "一整个方块世界，全部由代码画成。"

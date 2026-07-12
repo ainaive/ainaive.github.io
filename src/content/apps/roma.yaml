@@ -1,0 +1,22 @@
+name: Roma
+order: 6
+tagline:
+  en: "A curated home for black-and-white cinema."
+  zh: "黑白电影的策展之地。"
+description:
+  en: >-
+    A curation-first cinematheque in the spirit of Criterion and MUBI —
+    curated lists, plus pages on films and directors, not an exhaustive
+    database. Its public face is 八部半 (Babuban).
+  zh: >-
+    承 Criterion 与 MUBI 之气的策展式电影馆 —— 精选片单，加上影片与导演专题，
+    而非一座巨细无遗的数据库。对外，它叫八部半（Babuban）。
+meta:
+  en: [Web app · Next.js, Curated lists & pages, Not a database]
+  zh: [网页应用 · Next.js, 精选片单与专题, 不是数据库]
+accent:
+  light: "#8B2E2E"
+  dark: "#DD7A6A"
+links:
+  live: https://babuban.com
+  github: https://github.com/hutusi/roma

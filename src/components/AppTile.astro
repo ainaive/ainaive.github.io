@@ -23,7 +23,6 @@ const links = [
   <span class="index" aria-hidden="true">{numeral}</span>
   <h3 class="name">
     <span lang="en">{app.name}</span>
-    <span class="status">{t.status[app.status]}</span>
   </h3>
   <p class="tagline">{app.tagline[locale]}</p>
   {
@@ -108,16 +107,6 @@ const links = [
     font-size: var(--step-1);
     font-weight: 500;
     line-height: 1.2;
-  }
-
-  .status {
-    font-family: var(--font-mono);
-    font-size: var(--step--1);
-    font-weight: 400;
-    color: var(--accent);
-    border: 1px solid color-mix(in oklab, var(--accent) 55%, var(--paper));
-    padding: 0.05em 0.55em;
-    white-space: nowrap;
   }
 
   .tagline {

@@ -5,7 +5,6 @@ import { appSchema } from "../../src/lib/schema";
 const valid = {
   name: "Example",
   order: 1,
-  status: "live",
   tagline: { en: "A thing.", zh: "一个东西。" },
   description: { en: "It does a thing.", zh: "它做一件事。" },
   meta: { en: ["Web app", "Fast"], zh: ["网页应用", "很快"] },
@@ -51,11 +50,6 @@ describe("appSchema", () => {
       meta: { en: ["One", "Two", "Three"], zh: ["一", "二"] },
     };
     expect(appSchema.safeParse(lopsided).success).toBe(false);
-  });
-
-  test("rejects an unknown status", () => {
-    const badStatus = { ...valid, status: "beta" };
-    expect(appSchema.safeParse(badStatus).success).toBe(false);
   });
 
   test("rejects non-https links", () => {

@@ -30,11 +30,6 @@ const en = {
     lede: "It might be useful, it might not — but it has to be fun, waiting for someone who shares your taste to find it.",
     colophon: "More in the works.",
   },
-  status: {
-    live: "Live",
-    soon: "Coming soon",
-    v0: "v0 · early",
-  },
   appLinks: {
     live: "Visit",
     github: "Source",
@@ -89,11 +84,6 @@ const zh = {
     lede: "这里的软件可能有用，也可能无用，但一定要有趣，等待品味相投的你来发现。",
     colophon: "更多在路上。",
   },
-  status: {
-    live: "已上线",
-    soon: "即将发布",
-    v0: "v0 · 早期",
-  },
   appLinks: {
     live: "访问",
     github: "源码",
@@ -132,7 +122,6 @@ type UiShape = {
   langToggle: { label: string; ariaCurrent: string };
   hero: { tagline: string; wordmarkAria: string; manifesto: string };
   shelf: { heading: string; lede: string; colophon: string };
-  status: { live: string; soon: string; v0: string };
   appLinks: { live: string; github: string };
   appTile: { more: string; less: string; detailsAria: string };
   about: { heading: string; body: readonly string[] };

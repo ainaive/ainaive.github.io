@@ -38,20 +38,20 @@ Each app tile carries the app's **own** accent, taken from its real product iden
 | Monecraft | `#7A5E16` | `#F0BE3C` | its gold (darkened for AA on light paper; bright gold lives in dark mode)       |
 | Janus     | `#1565C0` | `#64B5F6` | its dashboard "running" blue                                                    |
 
-Rules: an accent colors _small things_ — index numerals, status chips, link underlines/hovers, the tile's hover rule. Never large fills, never body text.
+Rules: an accent colors _small things_ — index numerals, link underlines/hovers, the tile's hover rule. Never large fills, never body text.
 
 ## Typography
 
 - **Latin:** Newsreader (SIL OFL), self-hosted variable woff2, **latin subset only**, weights 400–700 with the full optical-size axis (opsz 6–72 — it's what makes the display cuts elegant, and worth its bytes). Measured 129 KB; budget ≤ 140 KB. `font-display: swap` with a metrics-adjusted Georgia fallback to avoid layout shift.
 - **Chinese: system serif fonts only.** No CJK webfont, ever (they are megabytes). Stack falls through: `"Newsreader", Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif`. Latin glyphs (app names, the wordmark) render in Newsreader on both locales.
-- **Mono** (version numbers, status chips, meta facts): system mono — `ui-monospace, "SF Mono", Menlo, Consolas, monospace`.
+- **Mono** (meta facts, disclosure + link labels): system mono — `ui-monospace, "SF Mono", Menlo, Consolas, monospace`.
 - **Fluid scale** (`clamp()`), rem-based: `--step--1` ≈ 0.83–0.94, `--step-0` ≈ 1–1.125 (body), `--step-1`, `--step-2`, `--step-3`, and `--step-4` ≈ 2.5–4.75 (hero wordmark only).
 - Chinese text: slightly looser `line-height` (1.9 vs 1.7 for Latin body); never letter-space CJK; punctuation stays full-width.
 
 ## Layout
 
 - Single column, `max-inline-size: 72rem` shell, prose capped at `65ch` (Latin) / ~`38em` effect for zh.
-- **The app shelf is a stamp sheet** (this deliberately supersedes the v1 "ledger, not a card grid" decision — the ledger read as a wall of text and didn't scale past a handful of apps): tiles in an `<ol>` grid sharing 1px `--rule` hairlines with **zero gaps**, like a sheet of stamps — a nod to the seal. 3 columns, 2 at ≤ 64rem, 1 at ≤ 40rem. Tile anatomy: accent index numeral `01` · name + status chip · tagline · a native `<details name>` disclosure holding description + meta facts (exclusive accordion — one open at a time) · links pinned at the tile's block-end, always visible. A quiet colophon tile ("More in the works.") closes the sheet.
+- **The app shelf is a stamp sheet** (this deliberately supersedes the v1 "ledger, not a card grid" decision — the ledger read as a wall of text and didn't scale past a handful of apps): tiles in an `<ol>` grid sharing 1px `--rule` hairlines with **zero gaps**, like a sheet of stamps — a nod to the seal. 3 columns, 2 at ≤ 64rem, 1 at ≤ 40rem. Tile anatomy: accent index numeral `01` · name · tagline · a native `<details name>` disclosure holding description + meta facts (exclusive accordion — one open at a time) · links pinned at the tile's block-end, always visible. A quiet colophon tile ("More in the works.") closes the sheet.
 - `border-radius: 0` everywhere. No shadows. Depth comes from paper tones (`--paper-deep`) and hairlines.
 - Sections separated by hairline rules, generous block spacing (fluid `clamp()` gaps).
 

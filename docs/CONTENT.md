@@ -7,7 +7,6 @@ One app = one YAML file in `src/content/apps/`. Copy an existing file and edit. 
 ```yaml
 name: Mercury # Latin product name; rendered with lang="en" on zh pages
 order: 1 # position on the shelf (1 = top)
-status: live # live | soon | v0  (labels localized in src/i18n/ui.ts)
 tagline:
   en: "Start with the exam. End with the career."
   zh: "考试为始，职场为终"
@@ -29,13 +28,12 @@ Rules the build enforces:
 
 - Every localized field needs **both** `en` and `zh`, non-empty. There is no fallback; a missing translation fails the build.
 - Both accent values must hit **4.5:1** contrast against their paper background. If the app's real brand color fails on light paper, darken it until it passes and keep the true color for dark mode (see Monecraft in `docs/DESIGN.md`).
-- `status` must be one of `live`, `soon`, `v0`.
 
 Pick the accent from the app's own identity (its logo, its primary UI color) — never invent a new color for variety's sake.
 
 ## Editing UI copy
 
-All non-app strings (headings, manifesto, about, footer, status labels, meta descriptions) live in `src/i18n/ui.ts`. The `en` object defines the shape; `zh` is typed against it, so a missing key is a compile error. Add strings in pairs, always.
+All non-app strings (headings, manifesto, about, footer, meta descriptions) live in `src/i18n/ui.ts`. The `en` object defines the shape; `zh` is typed against it, so a missing key is a compile error. Add strings in pairs, always.
 
 ## Writing in two languages
 
