@@ -1,5 +1,6 @@
 ---
 import { type Locale, ui } from "../i18n/ui";
+import { renderInlineLinks } from "../lib/inline-links";
 
 interface Props {
   locale: Locale;
@@ -11,7 +12,11 @@ const t = ui[locale];
 
 <section class="about" aria-labelledby="about-heading">
   <h2 id="about-heading">{t.about.heading}</h2>
-  {t.about.body.map((paragraph) => <p>{paragraph}</p>)}
+  {
+    t.about.body.map((paragraph) => (
+      <p set:html={renderInlineLinks(paragraph)} />
+    ))
+  }
 </section>
 
 <style>
